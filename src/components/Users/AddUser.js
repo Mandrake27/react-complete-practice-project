@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ErrorModal from '../UI/ErrorModal';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import Wrapper from '../Helpers/Wrapper';
 
 import styles from './AddUser.module.css';
 
@@ -52,21 +53,23 @@ const AddUser = (props) => {
   const onCloseModalHandler = () => setIsValid(true);
 
   return (
-    <Card className={ styles.input }>
-      <form onSubmit={ addUserHandler }>
-        <label htmlFor="userName">Username</label>
-        <input id="userName" type="text" value={ userName } onChange={ userNameChangeHandler }/>
-        <label htmlFor="userAge">Age (Years)</label>
-        <input id="userAge" type="number" value={ userAge } onChange={ userAgeChangeHandler }/>
-        <Button type="submit" action={ addUserHandler }>Add User</Button>
-      </form>
+    <Wrapper>
+      <Card className={ styles.input }>
+        <form onSubmit={ addUserHandler }>
+          <label htmlFor="userName">Username</label>
+          <input id="userName" type="text" value={ userName } onChange={ userNameChangeHandler }/>
+          <label htmlFor="userAge">Age (Years)</label>
+          <input id="userAge" type="number" value={ userAge } onChange={ userAgeChangeHandler }/>
+          <Button type="submit" action={ addUserHandler }>Add User</Button>
+        </form>
+      </Card>
       { !isValid &&
         <ErrorModal
           title={ error.title }
           message={ error.message }
           onCloseModal={ onCloseModalHandler }
         /> }
-    </Card>
+    </Wrapper>
   )
 };
 
